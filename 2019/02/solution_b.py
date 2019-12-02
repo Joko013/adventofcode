@@ -4,13 +4,12 @@ from aoc import AOC
 def get_solution(inp: str):
     inp_list = [int(item) for item in inp.split(',')]
 
-    # change the values according to the task
+    # result = 337076 + (first_index * 230400) + second_index (for first op code == 1)
     inp_list[1] = 84
     inp_list[2] = 44
 
     # slice input into list of commands
     command_list = [inp_list[i:i+4] for i in range(0, len(inp_list), 4)]
-    print(command_list)
 
     add = None
     for command in command_list:
@@ -18,8 +17,6 @@ def get_solution(inp: str):
         # first command - OP code
         op_code = command[0]
         if op_code == 99:
-            print(first_num)
-            print(second_num)
             break
         elif op_code == 1:
             add = True
@@ -46,3 +43,4 @@ solution = get_solution(aoc_data)
 
 result = 100 * solution[1] + solution[2]
 AOC.submit(data=result, part='b', day=2)
+
