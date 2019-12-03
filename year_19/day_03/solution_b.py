@@ -1,7 +1,7 @@
 
 
 def get_solution(inp: str):
-    """Where do the wires intersect? Which is the closest to the start?"""
+    """Where do the wires intersect? Which one can be reached in the least amount of steps?"""
     wires = [[wire for wire in wire_str.split(',')] for wire_str in inp.split('\n')]
 
     paths = list()
@@ -34,14 +34,17 @@ def get_solution(inp: str):
 
         paths.append(points[:])
 
+    # get only unique points so intersect
     unique_points = [set(tuple(point) for point in path) for path in paths]
     intersections = unique_points[0] & unique_points[1]
 
-    # calculate distances based on absolute distance from the origin
-    distances = list()
-    for intersection in intersections:
-        dist = abs(intersection[0]) + abs(intersection[1])
-        distances.append(dist)
+    step_sums = list()
+    # get sum of steps for each intersection
+    for i in intersections:
+        i_l = list(i)
 
-    return min(distances)
+        steps_w1 = paths[0].index(i_l) + 1
+        steps_w2 = paths[1].index(i_l) + 1
+        step_sums.append(steps_w1 + steps_w2)
 
+    return min(step_sums)
