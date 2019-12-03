@@ -21,16 +21,14 @@ def get_solution(inp: str):
             for _ in range(steps):
                 if direction == 'R':
                     position[0] += 1
-                    points.append(position[:])
                 elif direction == 'L':
                     position[0] -= 1
-                    points.append(position[:])
                 elif direction == 'U':
                     position[1] += 1
-                    points.append(position[:])
                 elif direction == 'D':
                     position[1] -= 1
-                    points.append(position[:])
+
+                points.append(position[:])
 
         paths.append(points[:])
 
