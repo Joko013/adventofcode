@@ -1,5 +1,6 @@
 
 def run_tests(func, result):
-    with open("test_data") as f:
+    with open("test_data.txt") as f:
         test_data = f.read()
-        assert func(test_data) == result
+        func_result = func(test_data)
+        assert func_result == result
