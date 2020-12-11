@@ -1,7 +1,7 @@
 from aoc import AOC
-from year_20.day_10.solution_b import get_solution
+from year_20.day_11.solution_b import get_solution
 
-day = 10
+day = 11
 part = "b"
 
 aoc_data = AOC.get_data(day=day, year=2020)
