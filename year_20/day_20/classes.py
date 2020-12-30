@@ -29,13 +29,13 @@ class Tile:
     def borders_side(self, other: Tile) -> Optional[str]:
         side = None
         if self.row(0) == other.row(9):
-            side = "up-down"
+            side = "up"
         elif self.row(9) == other.row(0):
-            side = "up-down"
+            side = "down"
         elif self.column(9) == other.column(0):
-            side = "left-right"
+            side = "right"
         elif self.column(0) == other.column(9):
-            side = "left-right"
+            side = "left"
 
         return side
 
@@ -57,7 +57,7 @@ class Tile:
                 return borders_side, other_rotation
 
     def neighbours(self, other_tiles):
-        neighbours = []
+        neighbours = dict()
 
         for other_id, other in other_tiles.items():
             if other is self:
@@ -65,6 +65,15 @@ class Tile:
 
             borders = self.borders(other)
             if borders:
-                neighbours.append(borders)
+                border, tile = borders
+                neighbours[border] = tile
 
         return neighbours
+
+    def __str__(self):
+        return "\n".join(row for row in self.rows)
+
+    @property
+    def inner(self) -> Tile:
+        tiles = [self.rows[i][1:len(self.rows[i]) - 1] for i in range(1, len(self.rows) - 1)]
+        return Tile(tiles, self.tile_id)
