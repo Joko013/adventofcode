@@ -3,10 +3,8 @@ from tests import run_tests
 
 def get_solution(puzzle_input: str):
     card, door = map(int, puzzle_input.splitlines())
-    print(card, door)
 
     loop_size = get_loop_size(card)
-    print(loop_size)
 
     value = 1
     for _ in range(loop_size):
